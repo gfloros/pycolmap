@@ -37,6 +37,10 @@ class CMakeBuild(build_ext):
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
         cmake_args = [
+            '-DOpenMP_libomp_LIBRARY=/opt/homebrew/Cellar/llvm/15.0.6/lib/libomp.dylib',
+            '-DEIGEN3_INCLUDE_DIRS=/opt/homebrew/include/eigen3/',
+            '-DQt5_DIR=/opt/homebrew/Cellar/qt@5/5.15.7',
+            '-DCMAKE_VERBOSE_MAKEFILE=ON',
             '-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
             '-DPYTHON_EXECUTABLE=' + sys.executable,
             '-DVERSION_INFO={}'.format(self.distribution.get_version()),
